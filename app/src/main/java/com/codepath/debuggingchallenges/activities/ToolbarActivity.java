@@ -2,8 +2,11 @@ package com.codepath.debuggingchallenges.activities;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.widget.TextView;
-import android.widget.Toolbar;
+//Original: import android.widget.Toolbar;                    // Step 1.)  Notice this is the wrong toolbar! import the androidx.appcompat.widget.Toolbar instead!
+//Revised:
+import androidx.appcompat.widget.Toolbar;
 
 import com.codepath.debuggingchallenges.R;
 
@@ -14,12 +17,12 @@ public class ToolbarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toolbar);
 
-        // Find the toolbar view inside the activity layout
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        // Sets the Toolbar to act as the ActionBar for this Activity window.
-        // Make sure the toolbar exists in the activity and is not null
-        setActionBar(toolbar);
+        // Step 2.)  setActionBar() doesn't seem to like this new toolbar -> use setSupportActionBar() instead!
+        //setActionBar(toolbar);
+        setSupportActionBar(toolbar);
+
 
         TextView tvDescription = (TextView) findViewById(R.id.tvDescription);
         tvDescription.setText(R.string.hello);

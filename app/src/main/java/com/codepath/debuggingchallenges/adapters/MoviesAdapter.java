@@ -5,6 +5,8 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.codepath.debuggingchallenges.R;
 import com.codepath.debuggingchallenges.models.Movie;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
@@ -42,16 +45,22 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
     public MoviesAdapter(List<Movie> movies) {
         this.movies = movies;
+        //Step 13.) This one line looks fine, so the movies List being passed in as a parameter must be the null object! Checkout the movies List being passed in!
     }
 
+
     @Override
+    //Step 11.)   Notice this returns 0 and NOT the size of movies! Return movies.size() instead!
     public int getItemCount() {
-        return 0;
+        return movies.size();
+
+        //Step 12.)  Running this shows that movies List is null! Checkout our constructor to see how we initialized it!
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.d("Test", "onCreate position");
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -65,7 +74,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(MoviesAdapter.ViewHolder viewHolder, int position) {
-
+        Log.d("Test", "onBind position = " + position);
         Movie movie = movies.get(position);
 
         // Populate the data into the template view using the data object

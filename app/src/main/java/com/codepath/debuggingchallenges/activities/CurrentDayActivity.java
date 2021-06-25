@@ -17,7 +17,11 @@ public class CurrentDayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_day);
         tvDay = (TextView) findViewById(R.id.tvDay);
-        tvDay.setText(getDayOfMonth());
+
+        //Step 1.) getDayOfMonth() returns an int, but I need a String! Convert it!
+        //Original: tvDay.setText(String.valueOf(getDayOfMonth()));
+        //Revised:
+        tvDay.setText(String.valueOf(getDayOfMonth()));
     }
 
     private int getDayOfMonth() {
